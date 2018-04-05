@@ -1,0 +1,19 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//font-awesome
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+
+@import '~jquery-ui/themes/base/all.css';
+
+.navbar-laravel {
+  background-color: #1abc9c;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
