@@ -58,7 +58,9 @@ class HomeController extends Controller
                 ->get();
         } else {
             $category = $request->category;
-            $blogs = Blog::wherehas('categories',function($q) use($category) {$q->where('name',$category);})
+            $blogs    = Blog::wherehas('categories', function ($q) use ($category) {
+                $q->where('name', $category);
+            })
                 ->where('status', 'Published')
                 ->whereDate('publish_date', '<=', date('Y-m-d'))
                 ->orderby('publish_date', 'desc')

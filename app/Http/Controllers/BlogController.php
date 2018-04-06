@@ -6,7 +6,6 @@ use App\Blog;
 use App\Category;
 use Illuminate\Http\Request;
 use Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class BlogController extends Controller
 {
@@ -30,41 +29,36 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = Category::All();
-        return view('blog.create', compact('categories'),['action'=>'create']);
+        $categories = Category::orderby('name')->get();
+        return view('blog.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'publish_date' => 'date_format:"d-m-Y',
-            'title' =>'required|max:200',
-            'image'=>'required|max:200',
-            'alt_text' =>'required|max:200',
-            'blog_text' => 'required',
-            'status' => 'required',
-        ]);
-        $blog = new Blog;
-        $blog->publish_date = $request->publish_date;
-        $blog->status = $request->status;
-        $blog->title = $request->title;
+        $request->validate(Blog::$rules);
+        $blog               = new Blog;
+        $blog->publish_date = date("Y-m-d", strtotime($request->publish_date));
+        $blog->status       = $request->status;
+        $blog->title        = $request->title;
         // Changes text back to raw HTML
-        $blog->blog_text = preg_replace('/<\s(.+?)\s>/','<$1>',$request->blog_text);
-        $blog->image = $request->image;
-        $blog->alt_text = $request->alt_text;
-        $blog->user_id = Auth::user()->id;
-        $category_list = explode(',',$request->categoryIds);
+        $blog->blog_text = preg_replace('/<\s(.+?)\s>/', '<$1>', $request->blog_text);
+        $blog->image     = $request->image;
+        $blog->alt_text  = $request->alt_text;
+        $blog->user_id   = Auth::user()->id;
+        $category_list   = explode(',', $request->categoryIds);
         $blog->save();
         $blog = Blog::findOrFail($blog->id);
-        foreach ($category_list as $category_id){
-            $category = Category::findOrFail($category_id);
-            $blog->categories()->attach($category);
+        foreach ($category_list as $category_id) {
+            $category = Category::find($category_id);
+            if(!empty($category)) {
+                $blog->categories()->attach($category);
+            }
         }
         $blog->save();
         return redirect()->route('home');
@@ -79,9 +73,6 @@ class BlogController extends Controller
     public function show($id)
     {
         $blog = Blog::with('categories')->findOrFail($id);
-        if(empty($blog)){
-            return back()->withErrors('Error - blog not found');
-        }
         return view('blog.show', compact('blog'));
     }
 
@@ -93,49 +84,41 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $blog = Blog::with('categories')->findOrFail($id);
-        $catsInBlog = $blog->categories()->pluck('id')->toArray();
-        $categories = Category::All()
-            ->except($catsInBlog);
-        return view('blog.create', compact('categories','blog'),['action'=>'edit']);
+        $blog       = Blog::with('categories')->findOrFail($id);
+        $catsInBlog = $blog->categories()->orderby('name')->pluck('id')->toArray();
+        $categories = Category::orderby('name')->whereNotIn('id', $catsInBlog)->get();
+        return view('blog.edit', compact('categories', 'blog'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $request->validate([
-            'publish_date' => 'date_format:"d-m-Y"',
-            'image'=>'required|max:200',
-            'alt_text' =>'required|max:200',
-            'title' =>'required|max:200',
-            'blog_text' => 'required',
-            'status' => 'required',
-        ]);
-        $blog = Blog::findOrFail($request->id);
-        $blog->publish_date = date("Y-m-d",strtotime($request->publish_date));
-        $blog->status = $request->status;
-        $blog->title = $request->title;
+        $request->validate(Blog::$rules);
+        $blog               = Blog::findOrFail($request->id);
+        $blog->publish_date = date("Y-m-d", strtotime($request->publish_date));
+        $blog->status       = $request->status;
+        $blog->title        = $request->title;
         // Changes text back to raw HTML
-        $blog->blog_text = preg_replace('/<\s(.+?)\s>/','<$1>',$request->blog_text);
-        $blog->image = $request->image;
-        $blog->alt_text = $request->alt_text;
-        $blog->user_id = $request->user_id;
-        $categoriesToAdd = explode(',',$request->categoryIds);
-        $categoriesToRemove = $blog->categories()->whereNotIn('id',$categoriesToAdd)->pluck('id')->toArray();
+        $blog->blog_text    = preg_replace('/<\s(.+?)\s>/', '<$1>', $request->blog_text);
+        $blog->image        = $request->image;
+        $blog->alt_text     = $request->alt_text;
+        $blog->user_id      = $request->user_id;
+        $categoriesToAdd    = explode(',', $request->categoryIds);
+        $categoriesToRemove = $blog->categories()->whereNotIn('id', $categoriesToAdd)->pluck('id')->toArray();
         //Remove already existing categories - no need to add them again
-        $categoriesToAdd = array_diff($categoriesToAdd,$blog->categories()->pluck('id')->toArray());
-        foreach ($categoriesToRemove as $category_id){
+        $categoriesToAdd = array_diff($categoriesToAdd, $blog->categories()->pluck('id')->toArray());
+        foreach ($categoriesToRemove as $category_id) {
             $category = Category::find($category_id);
             if (!empty($category)) {
                 $blog->categories()->detach($category);
             }
         }
-        foreach ($categoriesToAdd as $category_id){
+        foreach ($categoriesToAdd as $category_id) {
             $category = Category::find($category_id);
             if (!empty($category)) {
                 $blog->categories()->attach($category);
@@ -154,7 +137,7 @@ class BlogController extends Controller
      */
     public function destroy(Request $request)
     {
-        $request->validate(['id'=>'required|numeric']);
+        $request->validate(['id' => 'required|numeric']);
         $blog = Blog::findOrFail($request->id);
         $blog->delete();
         return redirect()->route('home');

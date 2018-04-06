@@ -12,13 +12,13 @@ class Category extends Model
 
     public function blogs()
     {
-      return $this->belongsToMany(Blog::class);
+        return $this->belongsToMany(Blog::class);
     }
 
     public function published_blogs()
     {
         return $this->belongsToMany(Blog::class)
-            ->where('status','=','Published')
+            ->where('status', '=', 'Published')
             ->whereDate('publish_date', '<=', date('Y-m-d'));
     }
 

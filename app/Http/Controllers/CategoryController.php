@@ -43,8 +43,8 @@ class CategoryController extends Controller
         $request->validate([
             'category' => 'required|max:30',
             'id' => 'required|numeric',
-            ]);
-        $category = Category::findOrFail($request->id);
+        ]);
+        $category       = Category::findOrFail($request->id);
         $category->name = $request->category;
         $category->save();
         return back();

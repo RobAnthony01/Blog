@@ -31,7 +31,7 @@
             </form>
         </div>
     </div>
-    <form method="post" action="Store">
+    <form method="post" action="store">
         @csrf
         <div class="form-horizontal">
             <div class="form-group">
@@ -46,7 +46,7 @@
             </div>
         </div>
     </form>
-    @include('partials.erroralert')
+    @include('partials.error-alert')
     <hr/>
     <div class="row">
         {{ $categories->links() }}
@@ -64,8 +64,8 @@
                 <tr class="d-flex">
                     <td class="col-sm-8 col-xs-6"> {{$category->name}}</td>
                     <td class="col-sm-4 col-xs-6">
-                        <button class="btn btn-default btn-sm edit-button" data="{{$category->id}}">Edit</button>
-                        <button class="btn btn-default btn-sm delete-button" data="{{$category->id}}">Delete
+                        <button class="btn btn-default btn-sm edit-button" data-id="{{$category->id}}">Edit</button>
+                        <button class="btn btn-default btn-sm delete-button" data-id="{{$category->id}}">Delete
                         </button>
                     </td>
                 </tr>
@@ -73,6 +73,9 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('scripts')
     <script>
         function closeModal(event) {
             document.getElementById('edit-delete-Modal').style.display = 'none';
@@ -87,19 +90,18 @@
                     document.getElementById('modal-title').innerText = 'Edit the category';
                     document.getElementById('name').value = event.target.parentNode.previousElementSibling.innerHTML.trim();
                     document.getElementById('modal-form').action = 'update';
-                    document.getElementById('modal-hidden').value = event.target.getAttribute('data');
+                    document.getElementById('modal-hidden').value = event.target.getAttribute('data-id');
                     document.getElementById('btn-submit').innerHTML = 'Save';
                     document.getElementById('edit-delete-Modal').style.display = 'block';
                 } else if (event.target.className.indexOf('delete-button') !== -1) {
                     document.getElementById('modal-title').innerText = 'Do you want to delete this category?';
                     document.getElementById('name').value = event.target.parentNode.previousElementSibling.innerHTML.trim();
                     document.getElementById('modal-form').action = 'delete';
-                    document.getElementById('modal-hidden').value = event.target.getAttribute('data');
+                    document.getElementById('modal-hidden').value = event.target.getAttribute('data-id');
                     document.getElementById('btn-submit').innerHTML = 'Delete';
                     document.getElementById('edit-delete-Modal').style.display = 'block';
                 }
                 event.preventDefault();
             });
     </script>
-
 @endsection

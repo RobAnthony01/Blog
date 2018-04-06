@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.editdeletemodal')
+    @include('partials.edit-delete-modal')
     <div class="container">
         @if (auth::check())
             <div class="row">
@@ -18,12 +18,12 @@
                 @endif
                 @foreach ($blogs as $blog)
                     <div class="greywhite">
-                        @include("partials.editdeletebuttons")
+                        @include("partials.edit-delete-buttons")
                         <h3>{{$blog->title}}</h3>
-                        <img src="Images\BlogImages\{{$blog->image}}" alt="{{$blog->alt_text}}" align="left"
+                        <img src="images\blog-images\{{$blog->image}}" alt="{{$blog->alt_text}}" align="left"
                              class="img-responsive" height="100">
                         {!! html_entity_decode(str_limit($blog->blog_text,420,'...')) !!}
-                        @include ('partials.listcategorypills')
+                        @include ('partials.list-category-pills')
                         @if(strlen($blog->blog_text) > 420)
                             <div class="pull-right"><a href="{{url('blog/' . $blog->id)}}">Continue reading...</a></div>
                         @endif
@@ -64,5 +64,5 @@
 
 
 @section('scripts')
-    @include('partials.editdeleteScript')
+    @include('partials.edit-delete-script')
 @endsection

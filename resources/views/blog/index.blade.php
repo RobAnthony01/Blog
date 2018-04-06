@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.editdeletemodal')
+    @include('partials.edit-delete-modal')
     <div class="container">
         @if (auth::check())
             <div class="row">
@@ -27,8 +27,8 @@
                         <td>{{$blog->publish_date}}</td>
                         <td>{{$blog->title}}</td>
                         <td>{{$blog->blog_text}}</td>
-                        <td>@include ('partials.listcategorypills')</td>
-                        <td>@include("partials.editdeletebuttons")</td>
+                        <td>@include ('partials.list-category-pills')</td>
+                        <td>@include("partials.edit-delete-buttons")</td>
                     </tr>
                 @endforeach
             </table>
@@ -37,5 +37,5 @@
 @endsection
 
 @section('scripts')
-    @include('partials.editdeleteScript')
+    @include('partials.edit-delete-script')
 @endsection
