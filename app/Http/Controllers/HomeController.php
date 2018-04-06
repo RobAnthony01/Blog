@@ -20,7 +20,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
     }
 
     /**
@@ -49,7 +48,8 @@ class HomeController extends Controller
                 ->get();
         }
 
-        $categories_with_count = Category::withCount('published_blogs')->get();
+        $categories_with_count = Category::withCount('published_blogs')->orderBy('name')->get();
+
         if (empty($request->category)) {
             $blogs = Blog::with('categories')
                 ->where('status', 'Published')
