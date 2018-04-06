@@ -16,7 +16,7 @@
                         <h2>Coding Blog</h2>
                     </div>
                     <figure>
-                        <img class="img-responsive" src="Images/BlogImages/Rob_Anthony_-_Web_Developer.jpg"/>
+                        <img class="img-responsive" src="images/blog-images/Rob_Anthony_-_Web_Developer.jpg"/>
                         <figcaption>A blog to record coding developments</figcaption>
                         <h4>Technology used</h4>
                         <ul class="list-group">
@@ -41,7 +41,7 @@
                         <h2>Lesson Timer</h2>
                     </div>
                     <figure>
-                        <img class="img-responsive" src="Images/BlogImages/LessonTimer.jpg"/>
+                        <img class="img-responsive" src="images/blog-images/LessonTimer.jpg"/>
                         <figcaption>A Windows Forms App to time lessons and activities for teachers</figcaption>
                         <h4>Technology used</h4>
                         <ul class="list-group">
@@ -66,7 +66,7 @@
                         <h2>Algebra Worksheet Generator</h2>
                     </div>
                     <figure>
-                        <img class="img-responsive" src="Images/BlogImages/Algebra Sheet.jpg"/>
+                        <img class="img-responsive" src="images/blog-images/Algebra Sheet.jpg"/>
                         <figcaption>An Excel spreadsheet producing random questions as a starter or a worksheet.
                             Generates answers and formats algebra correctly.
                         </figcaption>
@@ -88,7 +88,7 @@
                         <h2>Writing Blog</h2>
                     </div>
                     <figure>
-                        <img class="img-responsive" src="Images/BlogImages/Writer_Blog.jpg"/>
+                        <img class="img-responsive" src="images/blog-images/Writer_Blog.jpg"/>
                         <figcaption>A blog for a local writer</figcaption>
                         <h4>Technology used</h4>
                         <ul class="list-group">
@@ -111,7 +111,7 @@
                         <h2>Info4Families</h2>
                     </div>
                     <figure>
-                        <img class="img-responsive" src="Images/BlogImages/Info4Families.jpg"/>
+                        <img class="img-responsive" src="images/blog-images/Info4Families.jpg"/>
                         <figcaption>A website to provide information about activities in Norfolk for families.
                         </figcaption>
                         <h4>Technology used</h4>

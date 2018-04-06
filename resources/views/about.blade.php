@@ -41,25 +41,25 @@
         <div class="row mt centered">
             <div class="col-lg-3">
                 <figure>
-                    <img class="img-responsive" src="Images/BlogImages/TestDome_certificate_csharp.jpg" />
+                    <img class="img-responsive" src="images/blog-images/TestDome_certificate_csharp.jpg" />
                     <figcaption>C# Assessment</figcaption>
                 </figure>
             </div>
             <div class="col-lg-3">
                 <figure>
-                    <img class="img-responsive" src="Images/BlogImages/www.sololearn.com_Certificate_1080-5255135_pdf.png" />
+                    <img class="img-responsive" src="images/blog-images/www.sololearn.com_Certificate_1080-5255135_pdf.png" />
                     <figcaption>C# Tutorial</figcaption>
                 </figure>
             </div>
             <div class="col-lg-3">
                 <figure>
-                    <img class="img-responsive" src="Images/BlogImages/www.sololearn.com_Certificate_1024-5255135_pdf_.png" />
+                    <img class="img-responsive" src="images/blog-images/www.sololearn.com_Certificate_1024-5255135_pdf_.png" />
                     <figcaption>Javascript</figcaption>
                 </figure>
             </div>
             <div class="col-lg-3">
                 <figure>
-                    <img class="img-responsive" src="Images/BlogImages/Microsoft_DEV237x_Certificate_edX.png" />
+                    <img class="img-responsive" src="images/blog-images/Microsoft_DEV237x_Certificate_edX.png" />
                     <figcaption>jQuery &amp; Bootstrap</figcaption>
                 </figure>
             </div>
@@ -67,13 +67,13 @@
         <div class="row mt centered">
             <div class="col-lg-3">
                 <figure>
-                    <img class="img-responsive" src="Images/BlogImages/Microsoft_DEV211.1x_Certificate_edX.png" />
+                    <img class="img-responsive" src="images/blog-images/Microsoft_DEV211.1x_Certificate_edX.png" />
                     <figcaption>HTML, CSS &amp; Javascript</figcaption>
                 </figure>
             </div>
             <div class="col-lg-3">
                 <figure>
-                    <img class="img-responsive" src="Images/BlogImages/share1984101339.jpg" />
+                    <img class="img-responsive" src="images/blog-images/share1984101339.jpg" />
                     <figcaption>PHP</figcaption>
                 </figure>
             </div>
