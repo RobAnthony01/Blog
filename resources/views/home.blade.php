@@ -5,7 +5,7 @@
     <div class="container">
         @if (auth::check())
             <div class="row">
-                <a href="blog/create" class="btn btn-default">Create new</a>
+                <a href="{{url('blog/create')}}" class="btn btn-default">Create new</a>
             </div>
         @endif
         <div class="row">
@@ -13,7 +13,7 @@
                 @if (!empty($filter))
                     <div class="row centered">
                         <h2>Blogs with a category of {{$filter}}</h2>
-                        <a href="home" class="m-4 btn btn-default">Clear filter</a>
+                        <a href="{{url('home')}}" class="m-4 btn btn-default">Clear filter</a>
                     </div>
                 @endif
                 @foreach ($blogs as $blog)
@@ -22,7 +22,11 @@
                         <h3>{{$blog->title}}</h3>
                         <img src="images\blog-images\{{$blog->image}}" alt="{{$blog->alt_text}}" align="left"
                              class="img-responsive" height="100">
-                        {!! html_entity_decode(str_limit($blog->blog_text,420,'...')) !!}
+                        @if (strlen($blog->blog_text) > 420)
+                            {!! html_entity_decode(substr($blog->blog_text,0,strpos($blog->blog_text,' ', 420)) . '...') !!}
+                        @else
+                            {!! html_entity_decode($blog->blog_text) !!}
+                        @endif
                         @include ('partials.list-category-pills')
                         @if(strlen($blog->blog_text) > 420)
                             <div class="pull-right"><a href="{{url('blog/' . $blog->id)}}">Continue reading...</a></div>
