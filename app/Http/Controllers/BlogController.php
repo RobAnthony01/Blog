@@ -17,8 +17,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::with('categories')
-            ->orderby('publish_date', 'desc')
-            ->paginate(5);
+                     ->orderby('publish_date', 'desc')
+                     ->paginate(5);
         return view('blog.index', compact('blogs'));
     }
 
@@ -56,7 +56,7 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($blog->id);
         foreach ($category_list as $category_id) {
             $category = Category::find($category_id);
-            if(!empty($category)) {
+            if (!empty($category)) {
                 $blog->categories()->attach($category);
             }
         }
