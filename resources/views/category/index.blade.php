@@ -7,7 +7,7 @@
     <div id="edit-delete-Modal" class="modal">
         <div class="modal-content">
 
-            <form id="modal-form" action="#" method="post">
+            <form id="modal-form" action="" method="post">
                 @csrf
                 <input type="hidden" id="modal-hidden" name="id" value="">
                 <div class="modal-header">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="category"></label>
+                        <label for="name"></label>
                         <input type="text" class="form-control" name="category" id="name" value="default" required>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             </form>
         </div>
     </div>
-    <form method="post" action="store">
+    <form method="post" action="{{url('store')}}">
         @csrf
         <div class="form-horizontal">
             <div class="form-group">
@@ -41,7 +41,7 @@
                     <div class="mt-4 col-sm-3 col-xs-10 col-xs-offset-1">
                         <input class="form-control" name="category" id="category" required>
                     </div>
-                    <input type="submit" value="Create" class="m-4 btn btn-default col-sm-2"/>
+                    <input type="submit" value="Create" id="create-btn" class="m-4 btn btn-default col-sm-2"/>
                 </div>
             </div>
         </div>
@@ -64,8 +64,8 @@
                 <tr class="d-flex">
                     <td class="col-sm-8 col-xs-6"> {{$category->name}}</td>
                     <td class="col-sm-4 col-xs-6">
-                        <button class="btn btn-default btn-sm edit-button" data-id="{{$category->id}}">Edit</button>
-                        <button class="btn btn-default btn-sm delete-button" data-id="{{$category->id}}">Delete
+                        <button class="btn btn-default btn-sm edit-button" dusk="Edit{{$category->id}}" data-id="{{$category->id}}">Edit</button>
+                        <button class="btn btn-default btn-sm delete-button" dusk="Delete{{$category->id}}" data-id="{{$category->id}}">Delete
                         </button>
                     </td>
                 </tr>
