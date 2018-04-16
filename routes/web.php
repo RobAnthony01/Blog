@@ -47,3 +47,9 @@ Route::get('/category/index', ['uses' => 'CategoryController@index', 'middleware
 Route::post('/category/update', ['uses' => 'CategoryController@update', 'middleware' => 'auth']);
 Route::post('/category/delete', ['uses' => 'CategoryController@destroy', 'middleware' => 'auth']);
 Route::post('/category/store', ['uses' => 'CategoryController@store', 'middleware' => 'auth']);
+
+Route::get('/{any}', function ($any) {
+
+    Return redirect()->to('home');
+
+})->where('any', '.*');
