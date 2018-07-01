@@ -33,50 +33,8 @@
                 <p>When his son started to take an interest in coding, he also got the bug again and has been enthusiastically learning new languages, new skills and applying his previous knowledge to current problems.</p>
             </div><!-- /col-lg-6 -->
         </div><!-- /row -->
-        <div class="row mt">
-            <div class="col-lg-12">
-                <h4>Certificates</h4>
-            </div>
+        <div id="app">
+            <certificates></certificates>
         </div>
-        <div class="row mt centered">
-            <div class="col-lg-3">
-                <figure>
-                    <img class="img-responsive" src="images/blog-images/TestDome_certificate_csharp.jpg" />
-                    <figcaption>C# Assessment</figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3">
-                <figure>
-                    <img class="img-responsive" src="images/blog-images/www.sololearn.com_Certificate_1080-5255135_pdf.png" />
-                    <figcaption>C# Tutorial</figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3">
-                <figure>
-                    <img class="img-responsive" src="images/blog-images/www.sololearn.com_Certificate_1024-5255135_pdf_.png" />
-                    <figcaption>Javascript</figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3">
-                <figure>
-                    <img class="img-responsive" src="images/blog-images/Microsoft_DEV237x_Certificate_edX.png" />
-                    <figcaption>jQuery &amp; Bootstrap</figcaption>
-                </figure>
-            </div>
-        </div>
-        <div class="row mt centered">
-            <div class="col-lg-3">
-                <figure>
-                    <img class="img-responsive" src="images/blog-images/Microsoft_DEV211.1x_Certificate_edX.png" />
-                    <figcaption>HTML, CSS &amp; Javascript</figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3">
-                <figure>
-                    <img class="img-responsive" src="images/blog-images/share1984101339.jpg" />
-                    <figcaption>PHP</figcaption>
-                </figure>
-            </div>
-        </div><!-- /row -->
     </div><!-- /container -->
 @endsection

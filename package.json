@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "font-awesome": "^4.7.0",
+        "html_codesniffer": "^2.2.0",
         "jquery-ui": "^1.12.1"
     }
 }

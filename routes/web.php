@@ -48,6 +48,13 @@ Route::post('/category/update', ['uses' => 'CategoryController@update', 'middlew
 Route::post('/category/delete', ['uses' => 'CategoryController@destroy', 'middleware' => 'auth']);
 Route::post('/category/store', ['uses' => 'CategoryController@store', 'middleware' => 'auth']);
 
+// Certificates
+// ************
+Route::get('certificates/index','CertificatesController@index');
+
+// Default
+// *******
+
 Route::get('/{any}', function ($any) {
 
     Return redirect()->to('home');

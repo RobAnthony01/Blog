@@ -41,9 +41,9 @@ class CategoryController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'category' => 'required|max:30',
-            'id' => 'required|numeric',
-        ]);
+                               'category' => 'required|max:30',
+                               'id' => 'required|numeric',
+                           ]);
         $category       = Category::findOrFail($request->id);
         $category->name = $request->category;
         $category->save();
@@ -53,14 +53,17 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @var Category $category
+     * @param \Illuminate\Http\Request $request
+     * @throws
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
         $request->validate([
-            'id' => 'required|numeric',
-        ]);
+                               'id' => 'required|numeric',
+                           ]);
         $category = Category::findOrFail($request->id);
         $category->delete();
         return back();

@@ -30,13 +30,15 @@ class BlogController extends Controller
     public function create()
     {
         $categories = Category::orderby('name')->get();
-        return view('blog.create', compact('categories'));
+        return view('blog . create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     * @var Blog $blog
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +49,7 @@ class BlogController extends Controller
         $blog->status       = $request->status;
         $blog->title        = $request->title;
         // Changes text back to raw HTML
-        $blog->blog_text = preg_replace('/<\s(.+?)\s>/', '<$1>', $request->blog_text);
+        $blog->blog_text = preg_replace(' /<\s(.+?)\s >/', ' < $1 > ', $request->blog_text);
         $blog->image     = $request->image;
         $blog->alt_text  = $request->alt_text;
         $blog->user_id   = Auth::user()->id;
@@ -67,19 +69,21 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $blog = Blog::with('categories')->findOrFail($id);
-        return view('blog.show', compact('blog'));
+        return view('blog . show', compact('blog'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -87,13 +91,15 @@ class BlogController extends Controller
         $blog       = Blog::with('categories')->findOrFail($id);
         $catsInBlog = $blog->categories()->orderby('name')->pluck('id')->toArray();
         $categories = Category::orderby('name')->whereNotIn('id', $catsInBlog)->get();
-        return view('blog.edit', compact('categories', 'blog'));
+        return view('blog . edit', compact('categories', 'blog'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @var Blog $blog
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -104,7 +110,7 @@ class BlogController extends Controller
         $blog->status       = $request->status;
         $blog->title        = $request->title;
         // Changes text back to raw HTML
-        $blog->blog_text    = preg_replace('/<\s(.+?)\s>/', '<$1>', $request->blog_text);
+        $blog->blog_text    = preg_replace(' /<\s(.+?)\s >/', ' < $1 > ', $request->blog_text);
         $blog->image        = $request->image;
         $blog->alt_text     = $request->alt_text;
         $blog->user_id      = $request->user_id;
@@ -137,7 +143,7 @@ class BlogController extends Controller
      */
     public function destroy(Request $request)
     {
-        $request->validate(['id' => 'required|numeric']);
+        $request->validate(['id' => 'required | numeric']);
         $blog = Blog::findOrFail($request->id);
         $blog->delete();
         return redirect()->route('home');
